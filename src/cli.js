@@ -13,10 +13,14 @@ program.showHelpAfterError(true);
 // Process CLI arguments
 program
 	.createCommand('mmt-dev')
+	.addOption(new Option('-b, --rootBranch <branch>', 'the base branch to use to compare the HEAD to in git').default(DEFAULT_ROOT_BRANCH))
+	.addOption(new Option('-f, --mmtFolderName <folderName>', 'the name of the folder containing mmt files').default(DEFAULT_MMT_FOLDER_NAME))
 	.addArgument(new Argument('[environment]', 'the name of the environment you want to copy to').default(DEFAULT_ENVIRONMENT))
-	.addOption(new Option('-b, --rootBranch', 'the base branch to use to compare the HEAD to in git').default(DEFAULT_ROOT_BRANCH))
-	.addOption(new Option('-f, --mmtFolderName', 'the name of the folder containing mmt files').default(DEFAULT_MMT_FOLDER_NAME))
 	.action((environment, opts) => {
-		mmtDev(environment, opts.rootBranch, opts.mmtFolderName);
+		mmtDev({
+			environment: environment,
+			mmtFolderName: opts.mmtFolderName,
+			rootBranch: opts.rootBranch
+		});
 	})
 	.parse(process.argv);
