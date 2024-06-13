@@ -1,0 +1,18 @@
+{
+	"name": "miva-mmt-dev-mirror",
+	"version": "0.1.0",
+	"license": "MIT",
+	"main": "./src/main.js",
+	"bin": {
+		"mmt-dev": "./src/cli.js"
+	},
+	"author": {
+		"email": "hello@mgh.dev",
+		"name": "Max Hegler"
+	},
+	"dependencies": {
+		"chalk": "^4.1.2",
+		"commander": "^8.3.0",
+		"mirror-folder": "^3.1.0"
+	}
+}
