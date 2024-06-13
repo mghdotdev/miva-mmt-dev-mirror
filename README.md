@@ -23,3 +23,9 @@ mmt push
 ```
 
 **Note:** Run `mmt-dev --help` for documentation.
+
+## Recommended .gitignore Updates
+
+```.gitignore
+miva-templates-*/
+```
