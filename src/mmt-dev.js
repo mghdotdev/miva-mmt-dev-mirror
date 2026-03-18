@@ -16,6 +16,14 @@ const DEFAULT_ENVIRONMENT = 'dev';
 const DEFAULT_ROOT_BRANCH = 'origin/main';
 const DEFAULT_MMT_FOLDER_NAME = 'miva-templates';
 
+// Ignored file paths (uses starts with)
+const ignoredFilePaths = [
+	'miva-templates/templates/scriptresource-',
+	'miva-templates/templates/readytheme_',
+	'miva-templates/templates/cssresource-',
+	'miva-templates/templates/cssui-button-'
+];
+
 /**
  * @param {{environment?: string, rootBranch?: string, mmtFolderName?: string}} options
  */
@@ -43,7 +51,7 @@ const mmtDev = ({environment = DEFAULT_ENVIRONMENT, rootBranch = DEFAULT_ROOT_BR
 	const progress = mirror(watchPath, copyPath, {
 		ensureParents: true,
 		ignore: (file, stats, cb) => {
-			if (file.indexOf('.mmt') > -1) {
+			if (file.indexOf('.mmt') > -1 || ignoredFilePaths.some(ignoredPath => file.startsWith(ignoredPath))) {
 				return process.nextTick(cb, null, true);
 			}
 			return process.nextTick(cb, null, false);
